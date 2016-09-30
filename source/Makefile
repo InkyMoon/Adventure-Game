@@ -9,14 +9,14 @@ w=x86_64-w64-mingw32-g++ -Wall -Wextra --std=c++17 -DWINDOWS -DSFML_STATIC -stat
 all: Hózhó Hózhó.exe Hózhó.apk
 
 Hózhó.apk: ../android/res/values/strings.xml ../android/build_android.sh ../android/jni/*
-	pushd ../android && ../android/build_android.sh && popd
+	pushd ../android &>/dev/null && ../android/build_android.sh && popd &>/dev/null
 	if [ -f "../android/bin/Hózhó-debug.apk" ]; then mv ../android/bin/Hózhó-debug.apk Hózhó.apk; fi
 	if [ -f "../android/bin/Hózhó-release.apk" ]; then mv ../android/bin/Hózhó-release.apk Hózhó.apk; fi
 
-Hózhó: main_linux.o events_linux.o
+Hózhó: main_linux.o events_linux.o socket_linux.o debugging_linux.o
 	$l -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system
 
-Hózhó.exe: main_windows.o events_windows.o
+Hózhó.exe: main_windows.o events_windows.o socket_windows.o debugging_windows.o
 	$w -o $@ $^ -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lwinmm -lgdi32 -lfreetype -ljpeg -lopenal32 -lvorbisenc -lvorbisfile -lvorbis -logg -lws2_32
 
 main_linux.o: main.cpp
@@ -25,7 +25,7 @@ main_linux.o: main.cpp
 events_linux.o: events.cpp
 	$l -c -o $@ $^
 
-debugging_linux: debugging.cpp
+debugging_linux.o: debugging.cpp
 	$l -c -o $@ $^
 
 socket_linux.o: socket/socket.cpp socket/socket_unix.cpp
@@ -37,7 +37,7 @@ main_windows.o: main.cpp
 events_windows.o: events.cpp
 	$w -c -o $@ $^ -lsfml-system-s -lsfml-window-s -lsfml-graphics-s
 
-debugging_windows: debugging.cpp
+debugging_windows.o: debugging.cpp
 	$w -c -o $@ $^
 
 socket_windows.o: socket/socket.cpp socket/socket_windows.cpp

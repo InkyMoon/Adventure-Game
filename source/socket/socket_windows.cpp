@@ -80,6 +80,7 @@ int Socket::open(std::string address, unsigned int port)
   return 0;
 }
 
+#warning Socket::write for windows is unfinished
 int Socket::write(std::string m)
 {
 /*  int r = 0;
@@ -92,6 +93,7 @@ int Socket::write(std::string m)
   return 1;
 }
 
+#warning Socket::read for windows is unfinished
 std::string Socket::read()
 {
 /*  char buf[4097];

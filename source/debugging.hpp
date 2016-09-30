@@ -4,6 +4,6 @@
 #include <string>
 #include "socket/socket.hpp"
 
-int log(std::string msg);
+void log(std::string msg);
 
 #endif // DEBUGGING_HPP

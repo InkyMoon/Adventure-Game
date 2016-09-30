@@ -31,7 +31,7 @@ int main()
 
 		window.setFramerateLimit(31); // i like 31, it's not 30.
 		window.clear(sf::Colour::Black); // make the hole window black
-	printf("initialized the window\n");
+	log("initialized the window");
 
 	Rectangle rectangle;
 		rectangle.setFillColour(sf::Colour::Red);
@@ -44,8 +44,7 @@ int main()
 
 		// set position to middle of screen
 		rectangle.setPosition(vector2f(window.getSize().x / 2,window.getSize().y / 2));
-	printf("initialized the shape\n");
-
+	log("initialized the shape");
 
 	while (window.isOpen())
 	{
@@ -74,6 +73,6 @@ int main()
 		window.display();
 	}
 
-	printf("shutting down\n");
+	log("shutting down");
 	return 0;
 }

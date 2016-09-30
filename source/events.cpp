@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
+#include "debugging.hpp"
 
 typedef sf::Event Event;
 
@@ -12,33 +13,33 @@ void computerEvents(Event event)
 			switch (event.mouseButton.button)
 			{
 				case sf::Mouse::Left:
-					printf("left mouse pressed\n");
+					log("left mouse pressed");
 					break;
 				case sf::Mouse::Right:
-					printf("right mouse pressed\n");
+					log("right mouse pressed");
 					break;
 				default:
-					printf("some other mouse button pressed\n");
+					log("some other mouse button pressed");
 			}
 			break;
 		case sf::Event::MouseMoved:
-			printf("mouse button moved\n");
+			//log("mouse button moved");
 			break;
 		case sf::Event::MouseButtonReleased:
 			switch (event.mouseButton.button)
 			{
 				case sf::Mouse::Left:
-					printf("left mouse released\n");
+					log("left mouse released");
 					break;
 				case sf::Mouse::Right:
-					printf("right mouse released\n");
+					log("right mouse released");
 					break;
 				default:
-					printf("some other mouse button released\n");
+					log("some other mouse button released");
 			}
 			break;
 		default:
-			printf("unhandled event\n");
+			log("unhandled event");
 	}
 }
 #elif defined ANDROID
@@ -49,29 +50,29 @@ void androidEvents (Event event)
 		case sf::Event::TouchBegan:
 			if (event.touch.finger == 0)
 			{
-				printf("touch began\n");
+				log("touch began");
 			}
 			else
-					printf("can't handle more than one finger\n");
+					log("can't handle more than one finger");
 			break;
 		case sf::Event::TouchMoved:
 			if (event.touch.finger == 0)
 			{
-				printf("finger moved\n");
+				//log("finger moved");
 			}
 			else
-				printf("can't handle more than one finger\n");
+				log("can't handle more than one finger");
 			break;
 		case sf::Event::TouchEnded:
 			if (event.touch.finger == 0)
 			{
-				printf("touch ended\n");
+				log("touch ended");
 			}
 			else
-				printf("can't handle more than one finger\n");
+				log("can't handle more than one finger");
 			break;
 		default:
-			printf("unhandled event\n");
+			log("unhandled event");
 	}
 }
 #endif
