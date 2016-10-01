@@ -7,7 +7,7 @@ tmpPATH=$PATH
 export PATH=$PATH":/opt/android-ndk:/opt/android-sdk/tools"
 
 echo "android: updating the project" && \
-android update project --target "android-23" --path . &> build.log && \
+android update project --target "android-24" --path . &> build.log && \
 echo "android: building the project" && \
 ndk-build &> build.log && \
 echo "android: packaging the project" && \
