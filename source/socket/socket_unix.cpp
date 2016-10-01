@@ -10,6 +10,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+#define VERBOSE
+
 struct Socket
 {
   int fd = 0;
@@ -52,7 +54,7 @@ int Socket::open(std::string address, unsigned int port)
   if (connect(fd, (struct sockaddr*)&addr, sizeof(addr)) < 0)
   {
     #ifdef VERBOSE
-    printf("coundn't connect to \"%s:%o\"\n", address, port);
+    printf("coundn't connect to \"%s:%o\"\n", address.c_str(), port);
     #endif // VERBOSE
     return 3;
   }
