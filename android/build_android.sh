@@ -4,7 +4,7 @@
 tmpPATH=$PATH
 
 # the path of my installation of the sdk and ndk
-export PATH=$PATH":$PWD/../android-ndk:$PWD/../android-sdk/tools"
+export PATH=$PATH":/opt/android-ndk:/opt/android-sdk/tools"
 
 echo "android: updating the project" && \
 android update project --target "android-24" --path . &> build.log && \
