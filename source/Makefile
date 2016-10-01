@@ -6,18 +6,18 @@ l=g++ -Wall -Wextra --std=c++17 -DLINUX
 w=x86_64-w64-mingw32-g++ -Wall -Wextra --std=c++17 -DWINDOWS -DSFML_STATIC -static
 
 
-all: Hózhó Hózhó.apk
+all: Hozho Hozho.apk
 	echo "this doesn't compile for windows!"
 
-Hózhó.apk: ../android/res/values/strings.xml ../android/build_android.sh ../android/jni/*
+Hozho.apk: ../android/res/values/strings.xml ../android/build_android.sh ../android/jni/*
 	pushd ../android &>/dev/null && ../android/build_android.sh && popd &>/dev/null
-	if [ -f "../android/bin/Hózhó-debug.apk" ]; then mv ../android/bin/Hózhó-debug.apk Hózhó.apk; fi
-	if [ -f "../android/bin/Hózhó-release.apk" ]; then mv ../android/bin/Hózhó-release.apk Hózhó.apk; fi
+	if [ -f "../android/bin/Hozho-debug.apk" ]; then mv ../android/bin/Hozho-debug.apk Hozho.apk; fi
+	if [ -f "../android/bin/Hozho-release.apk" ]; then mv ../android/bin/Hozho-release.apk Hozho.apk; fi
 
-Hózhó: main_linux.o events_linux.o socket_linux.o debugging_linux.o
+Hozho: main_linux.o events_linux.o socket_linux.o debugging_linux.o
 	$l -o $@ $^ -lsfml-graphics -lsfml-window -lsfml-system
 
-Hózhó.exe: main_windows.o events_windows.o socket_windows.o debugging_windows.o
+Hozho.exe: main_windows.o events_windows.o socket_windows.o debugging_windows.o
 	$w -o $@ $^ -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lwinmm -lgdi32 -lfreetype -ljpeg -lopenal32 -lvorbisenc -lvorbisfile -lvorbis -logg -lws2_32
 
 main_linux.o: main.cpp
@@ -46,6 +46,6 @@ socket_windows.o: socket/socket.cpp socket/socket_windows.cpp
 
 clean:
 	if [[ -n *.o ]]; then rm *.o; fi
-	if [ -f Hózhó ]; then rm Hózhó; fi
-	if [ -f Hózhó.exe ]; then rm Hózhó.exe; fi
-	if [ -f Hózhó.apk ]; then rm Hózhó.apk; fi
+	if [ -f Hozho ]; then rm Hozho; fi
+	if [ -f Hozho.exe ]; then rm Hozho.exe; fi
+	if [ -f Hozho.apk ]; then rm Hozho.apk; fi
