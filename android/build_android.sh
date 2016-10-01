@@ -7,15 +7,19 @@ tmpPATH=$PATH
 export PATH=$PATH":/opt/android-ndk:/opt/android-sdk/tools"
 
 echo "android: updating the project" && \
-android update project --target "android-24" --path . &> build.log && \
+android update project --target "android-19" --path . &> build.log && \
 echo "android: building the project" && \
 ndk-build &> build.log && \
 echo "android: packaging the project" && \
 ant debug &> build.log && \
-echo "android: finished"
+echo "android: finished" && \
+export PATH=$tmpPATH && \
+exit 0
+
+export PATH=$tmpPATH
+exit 1
 #adb uninstall ca.eighty7.app && \
 #adb install -r bin/Hózhó-debug.apk && \
 #adb shell am start -n ca.eighty7.hózhó/android.app.NativeActivity
 
 # revert the modifications we made
-export PATH=$tmpPATH
