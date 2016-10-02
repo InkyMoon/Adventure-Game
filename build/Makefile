@@ -6,8 +6,14 @@ l=g++ -Wall -Wextra --std=c++17 -DLINUX
 w=x86_64-w64-mingw32-g++ -Wall -Wextra --std=c++17 -DWINDOWS -DSFML_STATIC -static
 
 
-all: Hozho Hozho.apk
-	echo "this doesn't compile for windows!"
+all: Hozho
+	echo "this doesn't compile for windows or android!"
+
+android: Hozho.apk
+
+windows: Hozho.exe
+
+linux: Hozho
 
 Hozho.apk: ../android/res/values/strings.xml ../android/build_android.sh ../android/jni/*
 	pushd ../android &>/dev/null && ../android/build_android.sh && popd &>/dev/null
