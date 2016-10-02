@@ -20,32 +20,32 @@ Hozho: main_linux.o events_linux.o socket_linux.o debugging_linux.o
 Hozho.exe: main_windows.o events_windows.o socket_windows.o debugging_windows.o
 	$w -o $@ $^ -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lwinmm -lgdi32 -lfreetype -ljpeg -lopenal32 -lvorbisenc -lvorbisfile -lvorbis -logg -lws2_32
 
-main_linux.o: main.cpp
+main_linux.o: ../source/main.cpp
 	$l -c -o $@ $^
 
-events_linux.o: events.cpp
+events_linux.o: ../source/events.cpp
 	$l -c -o $@ $^
 
-debugging_linux.o: debugging.cpp
+debugging_linux.o: ../source/debugging.cpp
 	$l -c -o $@ $^
 
-socket_linux.o: socket/socket.cpp socket/socket_unix.cpp
-	$l -c -o $@ socket/socket.cpp
+socket_linux.o: ../socket/socket.cpp ../socket/socket_unix.cpp
+	$l -c -o $@ ../socket/socket.cpp
 
-main_windows.o: main.cpp
+main_windows.o: ../source/main.cpp
 	$w -c -o $@ $^ -lsfml-system-s -lsfml-window-s -lsfml-graphics-s
 
-events_windows.o: events.cpp
+events_windows.o: ../source/events.cpp
 	$w -c -o $@ $^ -lsfml-system-s -lsfml-window-s -lsfml-graphics-s
 
-debugging_windows.o: debugging.cpp
+debugging_windows.o: ../source/debugging.cpp
 	$w -c -o $@ $^
 
-socket_windows.o: socket/socket.cpp socket/socket_windows.cpp
-	$w -c -o $@ socket/socket.cpp
+socket_windows.o: ../socket/socket.cpp ../socket/socket_windows.cpp
+	$w -c -o $@ ../socket/socket.cpp
 
 clean:
-	if [[ -n *.o ]]; then rm *.o; fi
-	if [ -f Hozho ]; then rm Hozho; fi
-	if [ -f Hozho.exe ]; then rm Hozho.exe; fi
-	if [ -f Hozho.apk ]; then rm Hozho.apk; fi
+	rm -f *.o
+	rm -f Hozho
+	rm -f Hozho.exe
+	rm -f Hozho.apk

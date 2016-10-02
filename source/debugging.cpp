@@ -1,6 +1,6 @@
 #include <string>
 #include <stdlib.h>
-#include "socket/socket.hpp"
+#include "../socket/socket.hpp"
 
 void log(std::string msg)
 {
