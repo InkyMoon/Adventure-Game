@@ -1,1 +1,4 @@
 *.o
+android/build.log
+android/local.properties
+android/libs
