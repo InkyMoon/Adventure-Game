@@ -17,7 +17,6 @@ typedef sf::Event Event;
 
 int main()
 {
-	printf("hehehe\n");
 	Window window;
 		#if defined LINUX || defined WINDOWS
 		window.create(sf::VideoMode(800,500), "text game", sf::Style::Default);

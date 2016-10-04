@@ -1,4 +1,7 @@
-// this is written on my tablet so its just ideas that i can copy to the project
+// this is my skeleton - terrence
+
+#define NET_LOGGING 1
+// if (NET_LOGGING) then it uses ncat and printf to log, other wise only printf
 
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -12,7 +15,7 @@ struct Option
 struct Screen
 {
   sf::Image background;
-  
+
   std::vector<Option> options;
 }
 
@@ -38,11 +41,11 @@ main()
 {
   Screen s;
   sf:RenderWindow window;
-  
+
   while (window.isOpen())
   {
     drawScreen(s);
-    
+
     sf::Event e;
     while (window.pollEvent(e))
     {
@@ -54,5 +57,5 @@ main()
       }
     }
   }
-  
+
 }
