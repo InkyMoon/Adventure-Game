@@ -1,0 +1,58 @@
+// this is written on my tablet so its just ideas that i can copy to the project
+
+#include <vector>
+#include <SFML/Graphics.hpp>
+
+struct Option
+{
+  sf::RectangleShape shape;
+  void* function();
+}
+
+struct Screen
+{
+  sf::Image background;
+  
+  std::vector<Option> options;
+}
+
+checkOptions(Vector2f& c, std::vector<Option>& os)
+{
+  // checks if things are clicked and if so, executes the function pointed to by function
+  for (auto& o : os)
+  {
+    if (o.shape.getGlobalBounds().contains(c))
+    {
+      *(o.function()); // how do you run a function from a pointer? that or *o.function(?
+      break;
+    }
+  }
+}
+
+loadScreen(Screen s)
+{
+  // switches to another screen?
+}
+
+main()
+{
+  Screen s;
+  sf:RenderWindow window;
+  
+  while (window.isOpen())
+  {
+    drawScreen(s);
+    
+    sf::Event e;
+    while (window.pollEvent(e))
+    {
+      switch (e.type)
+      {
+        case sf::Event::MouseButtonPressed:
+          checkOptions(s.options);
+          break;
+      }
+    }
+  }
+  
+}
