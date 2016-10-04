@@ -5,19 +5,7 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-
-struct Option
-{
-  sf::RectangleShape shape;
-  void* function();
-}
-
-struct Screen
-{
-  sf::Image background;
-
-  std::vector<Option> options;
-}
+#include "structures.hpp"
 
 checkOptions(Vector2f& c, std::vector<Option>& os)
 {
