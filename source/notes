@@ -1,4 +1,4 @@
-12312345:
+1:
 	objects positions in sfml are based on the top left corner. so setting the position of a rectangle to (10,10) means the top left corner of the rectangle will be drawn at (10,10). the following calls changes the origin so that when the shape is drawn at (10,10) the centre of the shape is drawn at (10,10).
 	shape.setPosition(0,0)
 	shape.setOrigin(1/2 shape width,1/2 shape height)
