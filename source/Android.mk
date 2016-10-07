@@ -6,8 +6,10 @@ LOCAL_MODULE    := sfml-example
 
 LOCAL_SRC_FILES := main.cpp
 LOCAL_SRC_FILES += events.cpp
-LOCAL_SRC_FILES += ../socket/socket.cpp
 LOCAL_SRC_FILES += debugging.cpp
+LOCAL_SRC_FILES += classes/button.cpp
+LOCAL_SRC_FILES += classes/menu.cpp
+LOCAL_SRC_FILES += ../socket/socket.cpp
 
 LOCAL_SHARED_LIBRARIES := sfml-system
 LOCAL_SHARED_LIBRARIES += sfml-window
