@@ -1,3 +1,6 @@
+#ifndef ALIASES_HPP
+#define ALIASES_HPP
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <vector>
@@ -13,6 +16,7 @@
 	typedef sf::Event Event;
 	typedef sf::Font Font;
 	typedef sf::Text Text;
+	typedef sf::Image Image;
 
 // Standard C++
 typedef std::string string;
@@ -21,4 +25,7 @@ template <typename T>
 using Vector = std::vector<T>;
 
 // note 1
-#define CENTRE_ORIGIN setOrigin(Vector2f(this->getGlobalBounds().width/2,this->getGlobalBounds().height/2))
+void centre_origin(RectangleShape& o) {	o.setOrigin(o.getGlobalBounds().width/2,o.getGlobalBounds().height/2); }
+void centre_origin(Text& o) {	o.setOrigin(o.getGlobalBounds().width/2,o.getGlobalBounds().height/2); }
+
+#endif // ALIASES_HPP

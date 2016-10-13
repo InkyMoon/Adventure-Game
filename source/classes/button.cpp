@@ -7,12 +7,12 @@ Button::Button(Font& newFont)
 
 	shape.setFillColor(BUTTON_FILL_COLOUR);
 	shape.setSize(BUTTON_SIZE);
-	shape.CENTRE_ORIGIN; // note 1
+	centre_origin(shape); // note 1
 
 	text.setString(BUTTON_TEXT);
 	text.setCharacterSize(BUTTON_TEXT_SIZE);
-	text.setFont(font);
-	text.CENTRE_ORIGIN;
+	text.setFont(*font);
+	centre_origin(text); // note 1
 };
 
 void Button::SetPosition(Vector2f pos)
@@ -24,30 +24,41 @@ void Button::SetPosition(Vector2f pos)
 void Button::SetString(string newString)
 {
 	text.setString(newString);
-	text.CENTRE_ORIGIN;
+	centre_origin(text);
 }
 
-void Button::Draw(RenderWindow& window)
+void Button::Draw(Window& window)
 {
 	window.draw(shape);
 	window.draw(text);
 }
 
-void Button::Clicked()
+void Button::Press()
 {
-	if (OnClick == nullptr)
-		throw string("Button::Clicked()|can't call nullptr function");
+	Color c = shape.getFillColor();
+
+	c.r -= c.r*.3;
+	c.g -= c.g*.3;
+	c.b -= c.b*.3;
+
+	shape.setFillColor(c);
+}
+
+void Button::Release()
+{
+	if (PressPtr == nullptr)
+		throw string("Button::" + string(__FUNCTION__) + "()|can't call nullptr function");
 
 	try
 	{
-		(*OnClick)(args);
+		(*PressPtr)(args);
 	}
 	catch (string e)
 	{
-		throw string("Button::Clicked()<" + e);
+		throw string("Button::" + string(__FUNCTION__) + "()<" + e);
 	}
 	catch (...)
 	{
-		throw string("Button::Clicked()|unhandled error");
+		throw string("Button::" + string(__FUNCTION__) + "()|unhandled error");
 	}
 }
